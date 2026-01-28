@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Feliz Cumple ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        overflow: hidden;
+        text-align: center;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 30px;
+        font-size: 2rem;
+        padding: 0 10px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+
+    /* 🎂 Cake */
+    .cake {
+        position: relative;
+        width: 200px;
+        height: 140px;
+        margin: 40px auto;
+    }
+
+    .layer {
+        position: absolute;
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .layer-bottom {
+        height: 60px;
+        background: #ff6b6b;
+        bottom: 0;
+    }
+
+    .layer-middle {
+        height: 50px;
+        background: #feca57;
+        bottom: 50px;
+    }
+
+    .layer-top {
+        height: 40px;
+        background: #ff9ff3;
+        bottom: 90px;
+    }
+
+    .candle {
+        position: absolute;
+        width: 10px;
+        height: 30px;
+        background: white;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+    }
+
+    .flame {
+        position: absolute;
+        width: 12px;
+        height: 18px;
+        background: orange;
+        border-radius: 50%;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px yellow;
+        animation: flicker 0.2s infinite alternate;
+    }
+
+    @keyframes flicker {
+        from { transform: translateX(-50%) scale(1); }
+        to { transform: translateX(-50%) scale(1.1); }
+    }
+
+    button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        background: white;
+        color: #ff6b6b;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    /* 🎉 Confetti */
+    .confetti {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: red;
+        top: -10px;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(720deg);
+        }
+    }
+
+    /* 📱 Mobile */
+    @media (max-width: 480px) {
+        h1 { font-size: 1.6rem; }
+        .cake { transform: scale(0.9); }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Feliz Cumple Amor :3❤️</h1>
+<p>Haz click en la torta y pide un deseo uwu ✨</p>
+
+<div class="cake" onclick="blowCandles()">
+    <div class="layer layer-bottom"></div>
+    <div class="layer layer-middle"></div>
+    <div class="layer layer-top"></div>
+    <div class="candle">
+        <div class="flame" id="flame"></div>
+    </div>
+</div>
+
+<button onclick="showMessage()">💌 Mensaje para ti</button>
+
+<script>
+    // 🎂 Apagar velas
+    function blowCandles() {
+        const flame = document.getElementById("flame");
+        flame.style.display = "none";
+        alert("💖 Deseo concedido. Te amo muchísimo, felices 17 años, nunca olvides lo mucho que me importas <3");
+    }
+
+    // 💌 Mensaje romántico
+    function showMessage() {
+        alert("Gracias por existir, por tu sonrisa y por hacerme muy feliz desde que te conozco. Espero poder verte más y pasar tiempo contigo... Feliz cumpleaños mi amor❤️");
+    }
+
+    // 🎉 Crear confetti
+    function createConfetti() {
+        const colors = ["#ff6b6b", "#feca57", "#1dd1a1", "#54a0ff", "#ff9ff3"];
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+
+    setInterval(createConfetti, 200);
+</script>
+
+</body>
+</html>
